@@ -90,7 +90,7 @@ function Modal() {
               transform: "translate(-50%, -50%)",
               backgroundColor: "#1C2354",
               position: "absolute",
-              zIndex: 5,
+              zIndex: 20,
               pointerEvents: "none",
               transformOrigin: "100% 100%",
               backgroundImage:
@@ -112,7 +112,14 @@ function Modal() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "100vh",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          // width: "100vw",
+          position: "fixed",
+          zIndex: 10,
+          backgroundColor: "rgba(0,0,0,0.8)",
         }}
       >
         <div

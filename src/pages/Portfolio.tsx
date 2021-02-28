@@ -1,5 +1,6 @@
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import React from "react";
+import Modal from "../tests/Modal";
 
 import { PortfolioContainer } from "./styles";
 
@@ -21,33 +22,77 @@ const variants: Variants = {
   },
 };
 
+const slashMotion: Variants = {
+  rest: { height: 0, opacity: 0 },
+  hover: {
+    height: "100%",
+    opacity: 1,
+    transition: {
+      duration: 0.25,
+      type: "tween",
+      ease: "easeIn",
+    },
+  },
+};
+
 export default function Portfolio() {
   const items = ["a", "b", "c", "d", "e"];
+  const [isVisible, setVisible] = React.useState(false);
+
+  function toggle() {
+    setVisible(!isVisible);
+  }
+
   return (
-    <PortfolioContainer>
-      <Background />
-      <Header />
-      <Dividers />
-      <div className="container-content">
-        {items.map((item) => (
-          <motion.div
-            initial="rest"
-            whileHover="hover"
-            animate="rest"
-            className="port-item"
-          >
-            <motion.img
-              variants={variants}
-              initial="from"
+    <>
+      <AnimatePresence>
+        {isVisible && (
+          <Modal />
+          // <motion.div
+          //   style={{
+          //     width: 1080,
+          //     height: 1080,
+          //     borderRadius: 15,
+          //     backgroundColor: "white",
+          //     position: "fixed",
+          //     zIndex: 99,
+          //   }}
+          //   initial={{ opacity: 0, scale: 0.75 }}
+          //   animate={{ opacity: 1, scale: 1 }}
+          //   exit={{ opacity: 0, scale: 0 }}
+          // />
+        )}
+      </AnimatePresence>
+      <PortfolioContainer>
+        <Background />
+        <Header />
+        <Dividers />
+        <div className="container-content">
+          {items.map((_, index) => (
+            <motion.div
+              key={index}
+              onClick={toggle}
+              initial="rest"
               whileHover="hover"
-              animate="to"
-              src="https://i.ytimg.com/vi/GsO9YDaCPD0/maxresdefault.jpg"
-              alt="a"
-            />
-          </motion.div>
-        ))}
-      </div>
-    </PortfolioContainer>
+              animate="rest"
+              className="port-item"
+            >
+              <motion.img
+                variants={variants}
+                initial="from"
+                whileHover="hover"
+                animate="to"
+                src="https://i.ytimg.com/vi/GsO9YDaCPD0/maxresdefault.jpg"
+                alt="a"
+              />
+              <motion.div variants={slashMotion} className="hover">
+                Click to open
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </PortfolioContainer>
+    </>
   );
 }
 
@@ -61,7 +106,7 @@ function Header() {
         animate={{
           y: 0,
         }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.6 }}
       >
         PORTFOLIO
       </motion.h1>
