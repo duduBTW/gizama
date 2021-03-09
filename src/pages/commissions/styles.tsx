@@ -8,7 +8,7 @@ export const CommissionsContainer = styled.div`
   }
 
   header {
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
 
     @media only screen and (max-width: 916px) {
@@ -64,6 +64,24 @@ export const CommissionsContainer = styled.div`
   }
 
   .info {
+    position: relative;
+    ::after {
+      content: "";
+      position: absolute;
+      top: 25%;
+      bottom: 0;
+      @media only screen and (max-width: 1366px) {
+        left: 75%;
+      }
+      @media only screen and (max-width: 916px) {
+        width: 0px;
+      }
+
+      left: 60%;
+
+      width: 1px;
+      background: #3a3c64;
+    }
     width: 100%;
 
     h2 {
@@ -82,7 +100,7 @@ export const CommissionsContainer = styled.div`
     }
     .price {
       margin-bottom: 40px;
-      font-size: 100px;
+      font-size: clamp(60px, 8vw, 100px);
       letter-spacing: 15px;
     }
 
@@ -101,15 +119,19 @@ export const CommissionsContainer = styled.div`
     }
 
     .porc {
+      /* border-left: 2px solid #3a3c64; */
       @media only screen and (max-width: 1366px) {
         flex: 1;
       }
+      @media only screen and (max-width: 916px) {
+        justify-content: flex-start;
+      }
 
       flex: 2;
-      padding: 0px 0px 0px 40px;
+      padding: 0px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
 
       h4 {
         font-size: 50px;
@@ -140,16 +162,17 @@ export const CommissionsContainer = styled.div`
     }
     ul {
       flex: 3;
-      padding: 0px;
+      padding: 0px 40px 0px 0px;
 
       display: flex;
       flex-direction: column;
       gap: 20px;
+      margin: 0px;
 
       li {
         list-style: none;
         color: #3b3f40;
-        font-size: 20px;
+        font-size: 16px;
       }
     }
   }
@@ -159,12 +182,16 @@ export const CommissionsContainer = styled.div`
   }
 
   .actions {
+    @media only screen and (max-width: 916px) {
+      display: none;
+    }
+
     height: 100px;
     display: flex;
     .action {
       flex: 3;
       background: #3a3c64;
-      margin-right: 60px;
+      margin-right: 20px;
       height: 100%;
       position: relative;
       ::after {
