@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Commissions from "./pages/commissions";
+import Nav from "./pages/components/Nav";
+import HomePage from "./pages/home";
 
 // Mine
 import Portfolio from "./pages/Portfolio";
@@ -8,21 +10,12 @@ import Portfolio from "./pages/Portfolio";
 function App() {
   return (
     <BrowserRouter>
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1, flexGrow: 1 }}>
-          <div
-            style={{
-              height: 48,
-              width: "75vw",
-              background: "#3A3C64",
-            }}
-          ></div>
-          <Switch>
-            <Route path="/portfolio" exact render={() => <Portfolio />} />
-            <Route path="/commissions" exact render={() => <Commissions />} />
-          </Switch>
-        </div>
-      </div>
+      <Nav />
+      <Switch>
+        <Route path="/portfolio" exact render={() => <Portfolio />} />
+        <Route path="/commissions" exact render={() => <Commissions />} />
+        <Route path="/" exact render={() => <HomePage />} />
+      </Switch>
     </BrowserRouter>
   );
 }

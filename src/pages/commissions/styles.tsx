@@ -2,9 +2,18 @@ import styled from "styled-components";
 
 export const CommissionsContainer = styled.div`
   padding: 40px 10vw;
+  position: relative;
 
   @media only screen and (max-width: 1366px) {
     padding: 40px 50px;
+  }
+  .background1 {
+    background: #fffafa;
+    height: 227px;
+    width: 70vw;
+    position: absolute;
+    top: 0px;
+    z-index: -99;
   }
 
   header {
@@ -14,22 +23,60 @@ export const CommissionsContainer = styled.div`
     @media only screen and (max-width: 916px) {
       flex-direction: column;
     }
+
     /* align-items: center;
     justify-content: center; */
   }
 
   .exemple {
+    position: relative;
+    /* overflow: hidden; */
     flex: 3;
     /* background: #ff6464; */
 
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    position: relative;
+
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: #3a3c64;
+      z-index: -100;
+    }
 
     img {
       max-width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    ::after {
+      content: "";
+      position: absolute;
+      background: #fdf2f4;
+      height: 60px;
+
+      /* width: 100vw; */
+      /* max-width: 100vw; */
+      left: 0px;
+      right: 0px;
+      /* top: 30px; */
+      bottom: -30px;
+      @media only screen and (max-width: 916px) {
+        height: 40px;
+        bottom: -20px;
+      }
+      @media only screen and (max-width: 1366px) {
+        left: -50px;
+      }
+      left: -10vw;
+      z-index: 3;
     }
   }
 
@@ -38,37 +85,47 @@ export const CommissionsContainer = styled.div`
       flex: 1;
     }
     @media only screen and (max-width: 916px) {
-      margin-top: 40px;
+      margin-top: 80px;
       margin-bottom: 0px;
     }
-    flex: 2;
+    flex: 1.5;
     /* background: #f7ffd7; */
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    h1 {
-      color: #000000;
-      font-size: 40px;
-      flex-direction: column;
-      padding-left: 22px;
+    .titleContainer {
+      h1 {
+        color: #292929;
+        font-size: 36px;
+        flex-direction: column;
+        font-weight: bold;
+        font-family: "Rubik", sans-serif;
+        margin: 0px;
+      }
+      overflow: hidden;
     }
 
-    p {
-      font-size: 20px;
-      border-left: 2px solid #3a3c64;
-      padding-left: 20px;
-      color: #3b3f40;
+    .pContainer {
+      p {
+        font-size: 18px;
+        border-left: 2px solid #3a3c64;
+        padding: 0px 20px;
+        color: #3b3f40;
+      }
+      overflow: hidden;
     }
   }
 
   .info {
     position: relative;
-    ::after {
+    .item-container {
+      position: relative;
+    }
+    .item-container::after {
       content: "";
       position: absolute;
-      top: 25%;
+      top: 0;
       bottom: 0;
       @media only screen and (max-width: 1366px) {
         left: 75%;
@@ -77,10 +134,11 @@ export const CommissionsContainer = styled.div`
         width: 0px;
       }
 
-      left: 60%;
+      left: 67.5%;
 
       width: 1px;
       background: #3a3c64;
+      z-index: 10;
     }
     width: 100%;
 
@@ -89,6 +147,11 @@ export const CommissionsContainer = styled.div`
       margin: 0px;
 
       font-weight: bold;
+      border-bottom: 1px solid black;
+
+      @media only screen and (max-width: 916px) {
+        border-bottom: none;
+      }
 
       ::after {
         letter-spacing: 0px;
@@ -99,9 +162,10 @@ export const CommissionsContainer = styled.div`
       }
     }
     .price {
-      margin-bottom: 40px;
-      font-size: clamp(60px, 8vw, 100px);
-      letter-spacing: 15px;
+      font-family: "Rubik", sans-serif;
+      padding-bottom: 20px;
+      font-size: clamp(55px, 7.5vw, 75px);
+      letter-spacing: 10px;
     }
 
     .item {
@@ -113,12 +177,13 @@ export const CommissionsContainer = styled.div`
         flex-direction: column;
         .porc {
           padding: 0px;
-          padding-top: 20px;
+          padding-top: 40px;
         }
       }
     }
 
     .porc {
+      font-family: "Rubik", sans-serif;
       /* border-left: 2px solid #3a3c64; */
       @media only screen and (max-width: 1366px) {
         flex: 1;
@@ -127,14 +192,14 @@ export const CommissionsContainer = styled.div`
         justify-content: flex-start;
       }
 
-      flex: 2;
+      flex: 1.5;
       padding: 0px;
       display: flex;
       align-items: center;
       justify-content: center;
 
       h4 {
-        font-size: 50px;
+        font-size: 44px;
 
         padding: 0px;
         margin: 0px;
@@ -142,7 +207,8 @@ export const CommissionsContainer = styled.div`
         font-weight: 400;
       }
     }
-    .item:nth-child(odd) {
+
+    .item:nth-child(even) {
       ::after {
         content: "";
         z-index: -1;
@@ -178,7 +244,11 @@ export const CommissionsContainer = styled.div`
   }
 
   .spacer-lg {
-    height: 70px;
+    height: 80px;
+
+    @media only screen and (max-width: 916px) {
+      height: 50px;
+    }
   }
 
   .actions {
@@ -211,9 +281,10 @@ export const CommissionsContainer = styled.div`
       justify-content: center;
 
       color: white;
-      font-size: 30px;
+      font-size: 26px;
 
       b {
+        letter-spacing: 2px;
         margin-right: 10px;
       }
     }
@@ -224,7 +295,7 @@ export const CommissionsContainer = styled.div`
       }
     }
     .separator {
-      flex: 2;
+      flex: 1.5;
     }
   }
 `;
