@@ -19,7 +19,8 @@ export const PortfolioContainer = styled.div`
   }
 
   .background1 {
-    background: #fbeff3;
+    opacity: 0.5;
+    background: #fff7f9;
     height: 107px;
     width: 70vw;
     position: fixed;
@@ -27,7 +28,8 @@ export const PortfolioContainer = styled.div`
     z-index: -99;
   }
   .background2 {
-    background: #fbeff3;
+    opacity: 0.5;
+    background: #fff7f9;
     height: 107px;
     width: 70vw;
     right: 0;
@@ -37,7 +39,8 @@ export const PortfolioContainer = styled.div`
     z-index: -99;
   }
   .background3 {
-    background: #fbeff3;
+    opacity: 0.5;
+    background: #fff7f9;
     height: 107px;
     width: 70vw;
     position: fixed;
@@ -53,7 +56,7 @@ export const PortfolioContainer = styled.div`
     /* grid-template-columns: 382px 382px; */
 
     @media only screen and (max-width: 980px) {
-      /* grid-template-columns: 382px; */
+      margin: 60px;
     }
 
     gap: 100px;
@@ -109,15 +112,24 @@ export const PortfolioContainer = styled.div`
     right: 0;
     height: 1px;
     background: #3a3c64;
+
+    @media only screen and (max-width: 980px) {
+      left: 30px;
+    }
   }
 
   .divider-content-first {
     position: absolute;
     top: 120px;
+    top: 120px;
     left: 20vw;
     height: 700px;
     width: 1px;
     background: #3a3c64;
+
+    @media only screen and (max-width: 980px) {
+      left: 30px;
+    }
   }
 
   .divider-content-second {
@@ -127,5 +139,9 @@ export const PortfolioContainer = styled.div`
     height: 700px;
     width: 1px;
     background: #3a3c64;
+
+    @media only screen and (max-width: 980px) {
+      left: 20px;
+    }
   }
 `;

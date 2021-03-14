@@ -1,4 +1,10 @@
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useTransform,
+  useViewportScroll,
+  Variants,
+} from "framer-motion";
 import React from "react";
 import Modal from "../tests/Modal";
 
@@ -152,9 +158,14 @@ function Dividers() {
 }
 
 function Background() {
+  const { scrollY } = useViewportScroll();
+  const y1 = useTransform(scrollY, [0, 600], [0, 150]);
+  const y2 = useTransform(scrollY, [0, 600], [0, -150]);
+
   return (
     <>
       <motion.div
+        style={{ y: y1 }}
         animate={{
           x: ["0%", "50%", "0%"],
           transition: {
@@ -165,6 +176,7 @@ function Background() {
         className="background1"
       />
       <motion.div
+        style={{ y: y2 }}
         animate={{
           x: ["0%", "-50%", "0%"],
           transition: {
@@ -182,6 +194,7 @@ function Background() {
             duration: 42,
           },
         }}
+        style={{ y: y1 }}
         className="background3"
       />
     </>

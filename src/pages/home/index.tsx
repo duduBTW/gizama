@@ -1,4 +1,10 @@
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { Button, HomeContainer, ItemStyle } from "./styles";
 import discordIcon from "../../assets/discordIcon.svg";
@@ -49,8 +55,9 @@ function HomePage() {
 
       <div className="banner">
         <motion.div className="banner-container">
-          <img
-            style={{ marginTop: 120 }}
+          <motion.img
+            initial={{ marginTop: 0 }}
+            animate={{ marginTop: 120 }}
             src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
             alt=""
           />
@@ -63,8 +70,9 @@ function HomePage() {
             src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
             alt=""
           />
-          <img
-            style={{ marginBottom: 120 }}
+          <motion.img
+            initial={{ marginBottom: 0 }}
+            animate={{ marginBottom: 120 }}
             src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
             alt=""
           />
@@ -80,8 +88,9 @@ function HomePage() {
             src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
             alt=""
           />
-          <img
-            style={{ marginBottom: 120 }}
+          <motion.img
+            initial={{ marginBottom: 0 }}
+            animate={{ marginBottom: 120 }}
             src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
             alt=""
           />
@@ -96,6 +105,10 @@ function HomePage() {
 }
 
 function Header() {
+  const { scrollY } = useViewportScroll();
+  const y1 = useTransform(scrollY, [0, 300], [0, 250]);
+  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
+
   return (
     <header>
       <div className="left">
@@ -107,9 +120,7 @@ function Header() {
             animate={{
               x: 0,
             }}
-            transition={{
-              mass: 0.1,
-            }}
+            style={{ y: y1 }}
           >
             Title
           </motion.h1>
@@ -123,9 +134,9 @@ function Header() {
               x: 0,
             }}
             transition={{
-              mass: 0.1,
               delay: 0.1,
             }}
+            style={{ y: y2 }}
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore
@@ -363,6 +374,7 @@ function Interested() {
           whileHover={{
             background: "#23243b",
           }}
+          whileTap={{ scale: 0.9 }}
           className="button"
         >
           Enter in Contact

@@ -6,13 +6,25 @@ export const ButtonContact = styled(Button)`
 `;
 
 export const ContactContainer = styled.div`
-  padding: 0px 432px;
+  padding: 0px 15vw;
+
+  @media only screen and (max-width: 1366px) {
+    padding: 0px 100px;
+  }
+
+  @media only screen and (max-width: 1166px) {
+    padding: 0px 50px;
+  }
 
   .contact {
     margin-top: 100px;
-    display: flex;
-    margin-bottom: 0px;
     position: relative;
+    margin-bottom: 0px;
+
+    display: flex;
+    @media only screen and (max-width: 1000px) {
+      flex-direction: column;
+    }
 
     header {
       flex: 428;
@@ -25,7 +37,7 @@ export const ContactContainer = styled.div`
       h1 {
         padding: 0px;
         margin: 0px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         font-size: 60px;
         font-weight: bold;
         font-family: "Rubik", sans-serif;
@@ -34,6 +46,10 @@ export const ContactContainer = styled.div`
       p {
         font-size: 18px;
         color: #292929;
+        margin: 0px;
+        @media only screen and (max-width: 1000px) {
+          margin-bottom: 40px;
+        }
       }
     }
 
@@ -105,7 +121,19 @@ export const ContactContainer = styled.div`
     ::after {
       content: "";
       position: absolute;
-      right: -432px;
+      right: -15vw;
+      @media only screen and (max-width: 1366px) {
+        right: -100px;
+      }
+
+      @media only screen and (max-width: 1166px) {
+        right: -50px;
+      }
+
+      @media only screen and (max-width: 1000px) {
+        left: -50px;
+      }
+
       bottom: -10%;
       top: 60%;
       z-index: -1;
@@ -118,8 +146,32 @@ export const ContactContainer = styled.div`
     height: 100px;
   }
 
-  .contact-soc {
-    display: flex;
-    gap: 60px;
+  .contact-soc-container {
+    h2 {
+      font-family: "Rubik", sans-serif;
+      font-size: 22px;
+    }
+
+    .contact-soc {
+      display: flex;
+      @media only screen and (max-width: 1000px) {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .left {
+        flex: 428;
+      }
+
+      .spacer {
+        flex: 100;
+      }
+
+      .spc {
+        flex: 528;
+        display: flex;
+        gap: 60px;
+      }
+    }
   }
 `;

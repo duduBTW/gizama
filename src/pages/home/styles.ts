@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const ItemStyle = styled(motion.div)`
+  cursor: pointer;
   height: 477px;
   width: 517px;
 
@@ -33,6 +34,7 @@ export const ItemStyle = styled(motion.div)`
       justify-content: space-between;
 
       label {
+        pointer-events: none;
         padding: 80px 0px 0px 80px;
 
         @media only screen and (max-width: 1366px) {
