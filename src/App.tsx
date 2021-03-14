@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Commissions from "./pages/commissions";
 import Nav from "./pages/components/Nav";
+import ContactPage from "./pages/contact";
 import HomePage from "./pages/home";
 
 // Mine
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route path="/portfolio" exact render={() => <Portfolio />} />
         <Route path="/commissions" exact render={() => <Commissions />} />
+        <Route path="/contact" exact render={() => <ContactPage />} />
         <Route path="/" exact render={() => <HomePage />} />
       </Switch>
     </BrowserRouter>

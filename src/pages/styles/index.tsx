@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const PortfolioContainer = styled.div`
   position: relative;
 
+  h1 {
+    font-family: "Rubik", sans-serif;
+    font-size: 42px;
+  }
+
   .header {
     height: 120px;
 
@@ -52,6 +57,7 @@ export const PortfolioContainer = styled.div`
     }
 
     gap: 100px;
+
     margin: 60px 25vw;
 
     .port-item {

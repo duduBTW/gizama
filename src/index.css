@@ -6,6 +6,7 @@ body {
   width: 100%;
   background: white;
   color: #1c2354;
+  overflow-x: hidden;
 }
 /* 
 img {

@@ -19,9 +19,24 @@ export const CommissionsContainer = styled.div`
   header {
     min-height: 70vh;
     display: flex;
+    position: relative;
 
     @media only screen and (max-width: 916px) {
       flex-direction: column;
+    }
+
+    .background3 {
+      @media only screen and (max-width: 916px) {
+        display: none;
+      }
+
+      background: #fffafa;
+      height: 127px;
+      width: 80vw;
+      position: absolute;
+      bottom: 0px;
+      right: -100px;
+      z-index: -99;
     }
 
     /* align-items: center;

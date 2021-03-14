@@ -43,6 +43,18 @@ export default function Commissions() {
         className="background1"
       />
       <header>
+        <motion.div
+          animate={{
+            width: ["100%", "0%", "100%"],
+            transition: {
+              repeat: Infinity,
+              duration: 28,
+              delay: 0.3,
+            },
+          }}
+          className="background3"
+        />
+
         <div className="exemple">
           <motion.div
             // animate={{

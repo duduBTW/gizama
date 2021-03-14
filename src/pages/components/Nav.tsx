@@ -1,30 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavContainer } from "./styles";
 
 export default function Nav() {
   return (
-    <div
-      style={{
-        height: 48,
-        width: "75vw",
-        background: "#3A3C64",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        color: "white",
-      }}
-    >
-      <h2 style={{ marginLeft: 40 }}>gizama</h2>
-      <div style={{ display: "flex", gap: 40, marginRight: 40 }}>
+    <NavContainer>
+      <Link
+        className="title"
+        to="/"
+        style={{ color: "white", textDecoration: "none" }}
+      >
+        gizama
+      </Link>
+      <div
+        className="item"
+        style={{ display: "flex", gap: 40, marginRight: 40 }}
+      >
         <Link
           to="/portfolio"
           style={{ color: "white", textDecoration: "none" }}
         >
           portfolio
         </Link>
-        <div>commissions</div>
-        <div>contact</div>
+        <Link
+          to="/commissions"
+          style={{ color: "white", textDecoration: "none" }}
+        >
+          commissions
+        </Link>
+        <Link to="/contact" style={{ color: "white", textDecoration: "none" }}>
+          contact
+        </Link>
       </div>
-    </div>
+    </NavContainer>
   );
 }
