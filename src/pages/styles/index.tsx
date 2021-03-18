@@ -15,6 +15,9 @@ export const PortfolioContainer = styled.div`
     align-items: center;
     justify-content: flex-end;
     padding: 0px 25vw;
+    @media only screen and (max-width: 980px) {
+      padding: 10px 40px;
+    }
     overflow: hidden;
   }
 
@@ -56,7 +59,7 @@ export const PortfolioContainer = styled.div`
     /* grid-template-columns: 382px 382px; */
 
     @media only screen and (max-width: 980px) {
-      margin: 60px;
+      margin: 40px;
     }
 
     gap: 100px;
@@ -114,7 +117,7 @@ export const PortfolioContainer = styled.div`
     background: #3a3c64;
 
     @media only screen and (max-width: 980px) {
-      left: 30px;
+      left: 20px;
     }
   }
 
@@ -128,7 +131,7 @@ export const PortfolioContainer = styled.div`
     background: #3a3c64;
 
     @media only screen and (max-width: 980px) {
-      left: 30px;
+      left: 20px;
     }
   }
 
@@ -141,7 +144,7 @@ export const PortfolioContainer = styled.div`
     background: #3a3c64;
 
     @media only screen and (max-width: 980px) {
-      left: 20px;
+      left: 10px;
     }
   }
 `;

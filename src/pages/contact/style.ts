@@ -13,7 +13,7 @@ export const ContactContainer = styled.div`
   }
 
   @media only screen and (max-width: 1166px) {
-    padding: 0px 50px;
+    padding: 0px 30px;
   }
 
   .contact {
@@ -23,6 +23,7 @@ export const ContactContainer = styled.div`
 
     display: flex;
     @media only screen and (max-width: 1000px) {
+      margin-top: 70px;
       flex-direction: column;
     }
 
@@ -38,7 +39,7 @@ export const ContactContainer = styled.div`
         padding: 0px;
         margin: 0px;
         margin-bottom: 40px;
-        font-size: 60px;
+        font-size: clamp(40px, 6.5vw, 60px);
         font-weight: bold;
         font-family: "Rubik", sans-serif;
       }
@@ -127,11 +128,11 @@ export const ContactContainer = styled.div`
       }
 
       @media only screen and (max-width: 1166px) {
-        right: -50px;
+        right: -30px;
       }
 
       @media only screen and (max-width: 1000px) {
-        left: -50px;
+        left: -30px;
       }
 
       bottom: -10%;

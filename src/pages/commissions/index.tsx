@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import ImageChanger from "../imageChanger";
 import { CommissionsContainer } from "./styles";
 
 export default function Commissions() {
@@ -66,12 +67,19 @@ export default function Commissions() {
             // }}
             className="background2"
           />
-          <motion.img
+          <ImageChanger
+            images={[
+              "https://i.imgur.com/C2p79XQ.jpg",
+              "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1369026/732168_990796.png",
+              "https://forum.worldofwarships.com/applications/core/interface/imageproxy/imageproxy.php?img=//frm-wows-sg.wgcdn.co/wows_forum_sg/monthly_2020_03/pekora.thumb.png.160456e9d1f239ebcf28559f5ed9d600.png&key=f68f7ce4259bf0f97905d4d6b80ecac3fc22b4224dcd1abb4481fc7e8386b354",
+            ]}
+          />
+          {/* <motion.img
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             src="https://i.imgur.com/C2p79XQ.jpg"
             alt=""
-          />
+          /> */}
         </div>
         <div className="desc">
           <div>
@@ -118,9 +126,17 @@ export default function Commissions() {
                   <li>{item}</li>
                 ))}
               </ul>
-              <div className="porc">
+              <motion.div
+                className="porc"
+                animate={{
+                  scale: 1,
+                }}
+                whileHover={{
+                  scale: 1.2,
+                }}
+              >
                 <h4>{listItem.porc}%</h4>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
