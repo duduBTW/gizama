@@ -8,6 +8,11 @@ body {
   color: #1c2354;
   overflow-x: hidden;
 }
+.border {
+  margin: 40px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid grey;
+}
 /* 
 img {
 }

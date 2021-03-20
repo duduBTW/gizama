@@ -170,13 +170,13 @@ export const HomeContainer = styled.div`
         h1 {
           font-family: "Rubik", sans-serif;
 
-          font-size: clamp(60px, 7.5vw, 86px);
+          font-size: clamp(60px, 7.5vw, 42px);
 
           color: #3b3f40;
           padding: 0px;
           margin: 0px;
-          margin-top: 60px;
-          margin-bottom: 120px;
+          margin-top: 100px;
+          margin-bottom: 100px;
 
           @media only screen and (max-width: 1366px) {
             margin-bottom: 60px;
@@ -194,7 +194,7 @@ export const HomeContainer = styled.div`
 
           padding: 0px;
           margin: 0px;
-          margin-bottom: 120px;
+          margin-bottom: 100px;
 
           @media only screen and (max-width: 1366px) {
             margin-bottom: 60px;

@@ -26,5 +26,30 @@ export const NavContainer = styled.div`
 
   .item {
     font-size: 14px;
+
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    height: 100%;
+
+    .link {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0px 20px;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+
+      .hoverEffect {
+        position: absolute;
+        height: 5px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: #c92d93;
+      }
+    }
   }
 `;

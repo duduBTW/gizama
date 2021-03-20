@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Commissions from "./pages/commissions";
 import Nav from "./pages/components/Nav";
 import ContactPage from "./pages/contact";
+import Contract from "./pages/contract";
 import HomePage from "./pages/home";
 
 // Mine
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Nav />
       <Switch>
+        <Route path="/contract" exact render={() => <Contract />} />
         <Route path="/portfolio" exact render={() => <Portfolio />} />
         <Route path="/commissions" exact render={() => <Commissions />} />
         <Route path="/contact" exact render={() => <ContactPage />} />

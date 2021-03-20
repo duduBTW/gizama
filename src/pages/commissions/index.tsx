@@ -2,6 +2,14 @@ import { motion } from "framer-motion";
 import React from "react";
 import ImageChanger from "../imageChanger";
 import { CommissionsContainer } from "./styles";
+//@ts-ignore
+import Main from "../../assets/Main.webm";
+//@ts-ignore
+import Mad from "../../assets/Mad.webm";
+//@ts-ignore
+import Nervous from "../../assets/Nervous.webm";
+//@ts-ignore
+import Shake from "../../assets/Shake_1.webm";
 
 export default function Commissions() {
   const list = [
@@ -69,9 +77,22 @@ export default function Commissions() {
           />
           <ImageChanger
             images={[
-              "https://i.imgur.com/C2p79XQ.jpg",
-              "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1369026/732168_990796.png",
-              "https://forum.worldofwarships.com/applications/core/interface/imageproxy/imageproxy.php?img=//frm-wows-sg.wgcdn.co/wows_forum_sg/monthly_2020_03/pekora.thumb.png.160456e9d1f239ebcf28559f5ed9d600.png&key=f68f7ce4259bf0f97905d4d6b80ecac3fc22b4224dcd1abb4481fc7e8386b354",
+              {
+                type: "video",
+                url: Main,
+              },
+              {
+                type: "video",
+                url: Mad,
+              },
+              {
+                type: "video",
+                url: Nervous,
+              },
+              {
+                type: "video",
+                url: Shake,
+              },
             ]}
           />
           {/* <motion.img

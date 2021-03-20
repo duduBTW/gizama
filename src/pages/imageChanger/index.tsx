@@ -9,7 +9,11 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 const swipeConfidenceThreshold = 10000;
-export default function ImageChanger({ images }: { images: string[] }) {
+export default function ImageChanger({
+  images,
+}: {
+  images: { type: "image" | "video"; url: any }[];
+}) {
   const [[page, direction], setPage] = useState([0, 0]);
   const [show, setShow] = useState<boolean>(false);
   const imageIndex = wrap(0, images.length, page);
@@ -97,43 +101,94 @@ export default function ImageChanger({ images }: { images: string[] }) {
         }}
       >
         <AnimatePresence initial={false} custom={direction}>
-          <motion.img
-            onHoverStart={() => setShow(true)}
-            onHoverEnd={() => setShow(false)}
-            style={{
-              height: "100%",
-              position: "absolute",
-              zIndex: 10,
-            }}
-            key={page}
-            src={images[imageIndex]}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            // dragElastic={1}
-            onDrag={(e, { offset }) => {
-              // setShow(offset.x > 0 ? "rgth" : "left");
-              console.log("data", offset.x);
-            }}
-            onDragEnd={(e, { offset, velocity }) => {
-              // setShow(null);
-              const swipe = swipePower(offset.x, velocity.x);
+          {images[imageIndex].type === "image" ? (
+            <motion.img
+              onHoverStart={() => setShow(true)}
+              onHoverEnd={() => setShow(false)}
+              style={{
+                height: "100%",
+                position: "absolute",
+                zIndex: 10,
+              }}
+              key={page}
+              src={images[imageIndex].url}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              // dragElastic={1}
+              onDrag={(e, { offset }) => {
+                // setShow(offset.x > 0 ? "rgth" : "left");
+                console.log("data", offset.x);
+              }}
+              onDragEnd={(e, { offset, velocity }) => {
+                // setShow(null);
+                const swipe = swipePower(offset.x, velocity.x);
 
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-          />
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+            />
+          ) : (
+            <motion.video
+              onHoverStart={() => setShow(true)}
+              onHoverEnd={() => setShow(false)}
+              style={{
+                height: "100%",
+                position: "absolute",
+                zIndex: 10,
+              }}
+              key={page}
+              src={images[imageIndex].url}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              // dragElastic={1}
+              onDrag={(e, { offset }) => {
+                // setShow(offset.x > 0 ? "rgth" : "left");
+                console.log("data", offset.x);
+              }}
+              onDragEnd={(e, { offset, velocity }) => {
+                // setShow(null);
+                const swipe = swipePower(offset.x, velocity.x);
+
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+              className="video-container video-container-overlay"
+              autoPlay
+              loop
+              muted
+              data-reactid=".0.1.0.0"
+            >
+              <source
+                type="video/webm"
+                data-reactid=".0.1.0.0.0"
+                src={images[imageIndex].url}
+              />
+            </motion.video>
+          )}
         </AnimatePresence>
       </div>
     </>

@@ -122,7 +122,7 @@ function Header() {
             }}
             style={{ y: y1 }}
           >
-            Title
+            Gizama artista e animador de live2d
           </motion.h1>
         </div>
         <div className="p-container">

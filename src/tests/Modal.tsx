@@ -1,28 +1,23 @@
+// @ts-nocheck
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { wrap } from "popmotion";
-//@ts-ignore
-import alerNoSound from "../assets/testeAlpha.webm";
-//@ts-ignore
-import oka from "../assets/oka2.webm";
+import MainFull from "../assets/MainFull.webm";
+import Main from "../assets/Main.webm";
+import Shake from "../assets/Shake_1.webm";
+import ShakeFull from "../assets/ShakeFull_1.webm";
+import Mad from "../assets/Mad.webm";
+import MadFull from "../assets/MadFull.webm";
+import Nervous from "../assets/Nervous.webm";
+import NervousFull from "../assets/NervousFull.webm";
 
-export const images = [
-  "https://frm-wows-sg.wgcdn.co/wows_forum_sg/monthly_2020_03/pekora.png.aba93c990b641d384f20c7daeeca1ff4.png",
-  "https://i.imgur.com/C2p79XQ.jpg",
-
-  // "https://cdn.donmai.us/original/b4/1d/b41de76c1089f24061909592636a3ee9.png",
-];
-export const imagesFull = [
-  "https://i.pinimg.com/originals/0d/04/f0/0d04f07cb5bb3b5cd376679b8860e764.png",
-  // alerNoSound,
-  "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1369026/277588_359286.png",
-
-  // "https://cdn.donmai.us/original/b4/1d/b41de76c1089f24061909592636a3ee9.png",
-];
+export const images = [Main, Shake, Mad, Nervous];
 
 const imagesFull2 = [
-  alerNoSound,
-  oka,
+  MainFull,
+  ShakeFull,
+  MadFull,
+  NervousFull,
   // "https://cdn.donmai.us/original/b4/1d/b41de76c1089f24061909592636a3ee9.png",
 ];
 const swipePower = (offset: number, velocity: number) => {
@@ -176,15 +171,14 @@ function Modal() {
             }}
           >
             <AnimatePresence initial={false} custom={direction}>
-              <motion.img
+              <motion.video
                 style={{
                   height: "100%",
                   position: "absolute",
                   zIndex: 10,
-                  left: "5%",
+                  maxWidth: 1000,
                 }}
                 key={page}
-                src={images[imageIndex]}
                 custom={direction}
                 variants={variants}
                 initial="enter"
@@ -211,7 +205,18 @@ function Modal() {
                     paginate(-1);
                   }
                 }}
-              />
+                className="video-container video-container-overlay"
+                autoPlay
+                loop
+                muted
+                data-reactid=".0.1.0.0"
+              >
+                <source
+                  type="video/webm"
+                  data-reactid=".0.1.0.0.0"
+                  src={images[imageIndex]}
+                />
+              </motion.video>
             </AnimatePresence>
           </div>
           <AnimatePresence>
@@ -233,7 +238,7 @@ function Modal() {
               style={{
                 position: "absolute",
                 right: "10%",
-                bottom: "2%",
+                bottom: "-10%",
                 height: "110%",
                 maxWidth: 400,
                 zIndex: 5,
