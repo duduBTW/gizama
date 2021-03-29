@@ -39,60 +39,70 @@ export const CommissionsContainer = styled.div`
       z-index: -99;
     }
 
+    .exemple {
+      position: relative;
+      /* overflow: hidden; */
+      flex: 3;
+      /* background: #ff6464; */
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      @media only screen and (max-width: 916px) {
+        /* background: red; */
+        height: 100px;
+        width: auto;
+      }
+
+      ::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 1px;
+        background: #3a3c64;
+        z-index: -100;
+      }
+
+      .img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        @media only screen and (max-width: 916px) {
+          height: 100px;
+          width: 100px;
+        }
+      }
+
+      ::after {
+        content: "";
+        position: absolute;
+        background: #fdf2f4;
+        height: 60px;
+
+        /* width: 100vw; */
+        /* max-width: 100vw; */
+        left: 0px;
+        right: 0px;
+        /* top: 30px; */
+        bottom: -30px;
+        @media only screen and (max-width: 916px) {
+          height: 40px;
+          bottom: -20px;
+        }
+        @media only screen and (max-width: 1366px) {
+          left: -50px;
+        }
+        left: -10vw;
+        z-index: 3;
+      }
+    }
     /* align-items: center;
     justify-content: center; */
-  }
-
-  .exemple {
-    position: relative;
-    /* overflow: hidden; */
-    flex: 3;
-    /* background: #ff6464; */
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    ::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 1px;
-      background: #3a3c64;
-      z-index: -100;
-    }
-
-    .img {
-      max-width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    ::after {
-      content: "";
-      position: absolute;
-      background: #fdf2f4;
-      height: 60px;
-
-      /* width: 100vw; */
-      /* max-width: 100vw; */
-      left: 0px;
-      right: 0px;
-      /* top: 30px; */
-      bottom: -30px;
-      @media only screen and (max-width: 916px) {
-        height: 40px;
-        bottom: -20px;
-      }
-      @media only screen and (max-width: 1366px) {
-        left: -50px;
-      }
-      left: -10vw;
-      z-index: 3;
-    }
   }
 
   .desc {
@@ -142,14 +152,14 @@ export const CommissionsContainer = styled.div`
       position: absolute;
       top: 0;
       bottom: 0;
-      @media only screen and (max-width: 1366px) {
+      /* @media only screen and (max-width: 1366px) {
         left: 75%;
-      }
+      } */
       @media only screen and (max-width: 916px) {
         width: 0px;
       }
 
-      left: 67.5%;
+      left: 0;
 
       width: 1px;
       background: #3a3c64;
@@ -168,25 +178,39 @@ export const CommissionsContainer = styled.div`
         border-bottom: none;
       }
 
-      ::after {
+      /* ::after {
         letter-spacing: 0px;
         content: "base price";
         font-size: 22px;
         font-weight: lighter;
         padding-left: 20px;
-      }
+      } */
     }
     .price {
       font-family: "Rubik", sans-serif;
-      padding-bottom: 20px;
-      font-size: clamp(55px, 7.5vw, 75px);
-      letter-spacing: 10px;
+      padding-bottom: 30px;
+      padding-top: 30px;
+      font-size: clamp(55px, 7.5vw, 65px);
+      letter-spacing: 5px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      z-index: 2;
+
+      @media only screen and (max-width: 916px) {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        padding-left: 40px;
+      }
     }
 
     .item {
       position: relative;
       display: flex;
-      padding: 40px 0px;
+      padding: 40px 40px;
 
       @media only screen and (max-width: 916px) {
         flex-direction: column;
@@ -224,13 +248,15 @@ export const CommissionsContainer = styled.div`
     }
 
     .item:nth-child(even) {
+      // here
       ::after {
         content: "";
         z-index: -1;
         position: absolute;
         left: -15vw;
         top: 0;
-        right: 0px;
+        /* right: 32.5%; */
+        right: 0%;
         bottom: 0px;
         background: #fffafa;
       }
@@ -259,7 +285,7 @@ export const CommissionsContainer = styled.div`
   }
 
   .spacer-lg {
-    height: 80px;
+    height: 60px;
 
     @media only screen and (max-width: 916px) {
       height: 50px;
@@ -274,6 +300,8 @@ export const CommissionsContainer = styled.div`
     height: 100px;
     display: flex;
     .action {
+      cursor: pointer;
+
       flex: 3;
       background: #3a3c64;
       margin-right: 20px;

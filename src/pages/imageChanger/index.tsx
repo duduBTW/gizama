@@ -11,8 +11,10 @@ const swipePower = (offset: number, velocity: number) => {
 const swipeConfidenceThreshold = 10000;
 export default function ImageChanger({
   images,
+  onImageChange,
 }: {
   images: { type: "image" | "video"; url: any }[];
+  onImageChange?: any;
 }) {
   const [[page, direction], setPage] = useState([0, 0]);
   const [show, setShow] = useState<boolean>(false);
@@ -23,6 +25,10 @@ export default function ImageChanger({
     window.addEventListener("mousemove", cursor);
     return () => {};
   }, []);
+
+  useEffect(() => {
+    if (onImageChange) onImageChange(imageIndex);
+  }, [imageIndex, onImageChange]);
 
   const variants = {
     enter: (direction: number) => {
@@ -51,8 +57,8 @@ export default function ImageChanger({
 
   const cursor = (e: any) => {
     if (mouseRef.current) {
-      mouseRef.current.style.top = e.pageY + "px";
-      mouseRef.current.style.left = e.pageX + "px";
+      mouseRef.current.style.top = e.clientY + "px";
+      mouseRef.current.style.left = e.clientX + "px";
     }
   };
 
@@ -117,6 +123,7 @@ export default function ImageChanger({
               initial="enter"
               animate="center"
               exit="exit"
+              className="imgInt"
               transition={{
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
@@ -176,7 +183,7 @@ export default function ImageChanger({
                   paginate(-1);
                 }
               }}
-              className="video-container video-container-overlay"
+              className="imgInt"
               autoPlay
               loop
               muted

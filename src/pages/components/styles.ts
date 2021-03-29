@@ -33,6 +33,7 @@ export const NavContainer = styled.div`
     height: 100%;
 
     .link {
+      cursor: pointer;
       height: 100%;
       display: flex;
       align-items: center;

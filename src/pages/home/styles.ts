@@ -330,7 +330,6 @@ export const HomeContainer = styled.div`
 
         margin-left: 10px;
         .img {
-          background-image: url("https://www.live2d.com/wp/wp-content/themes/cubism_wpml/img/index-function-img_01.jpg");
           background-position: center;
           position: absolute;
           height: 100%;

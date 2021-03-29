@@ -1,5 +1,4 @@
 import {
-  AnimatePresence,
   motion,
   useAnimation,
   useTransform,
@@ -9,47 +8,20 @@ import React, { useEffect, useState } from "react";
 import { Button, HomeContainer, ItemStyle } from "./styles";
 import discordIcon from "../../assets/discordIcon.svg";
 import { useInView } from "react-intersection-observer";
+import content, { ItemProp } from "../../data";
 
-function FadeInWhenVisible({ children }: any) {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 1,
-  });
+function HomePage({ idioma }: { idioma: "en" | "pt" }) {
+  console.log(JSON.stringify(content));
+  const data = content[idioma];
 
-  useEffect(() => {
-    console.log("inView", inView);
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [controls, inView]);
-
-  return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      transition={{ duration: 0.3, mass: 0.4 }}
-      variants={{
-        visible: { opacity: 1, x: 0 },
-        hidden: { opacity: 0, x: -100 },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function HomePage() {
   return (
     <HomeContainer>
-      <Header />
+      <Header data={data} />
       <div className="spacer-lg"></div>
-      <Info />
+      <Info data={data} />
 
       <div className="spacer-lg" />
-      <Contact />
+      <Contact data={data} />
 
       <div className="spacer-lg"></div>
 
@@ -104,7 +76,8 @@ function HomePage() {
   );
 }
 
-function Header() {
+function Header({ data }: { data: ItemProp }) {
+  const { desc, title } = data.home.header;
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, 250]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
@@ -122,7 +95,7 @@ function Header() {
             }}
             style={{ y: y1 }}
           >
-            Gizama artista e animador de live2d
+            {title}
           </motion.h1>
         </div>
         <div className="p-container">
@@ -138,8 +111,7 @@ function Header() {
             }}
             style={{ y: y2 }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore
+            {desc}
           </motion.p>
         </div>
 
@@ -175,7 +147,8 @@ function Header() {
   );
 }
 
-function Info() {
+function Info({ data }: { data: ItemProp }) {
+  const { desc, img, title } = data.home.info;
   const [drag, setDrag] = useState(false);
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -226,7 +199,7 @@ function Info() {
               },
             }}
           >
-            TITLE 2
+            {title}
           </motion.h2>
         </div>
         <div className="p-container">
@@ -244,10 +217,7 @@ function Info() {
               mass: 0.4,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniamadipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolor
+            {desc}
           </motion.p>
         </div>
       </motion.div>
@@ -257,13 +227,9 @@ function Info() {
           <motion.div
             className="img"
             initial="hidden"
-            // animate={{
-            //   x: -10,
-            //   y: -10,
-            //   transition: {
-            //     delay: 0.2,
-            //   },
-            // }}
+            style={{
+              backgroundImage: `url("${img}")`,
+            }}
             variants={{
               visible: {
                 x: -10,
@@ -291,21 +257,21 @@ function Info() {
   );
 }
 
-function Contact() {
+function Contact({ data }: { data: ItemProp }) {
   return (
     <div className="contact">
       <div className="left">
-        <ContactItem />
+        <ContactItem type="DISCORD" title={data.discord} />
       </div>
       <div className="spacer"></div>
       <div className="rigth">
-        <ContactItem />
+        <ContactItem type="TWITTER" title={data.twitter} />
       </div>
     </div>
   );
 }
 
-export function ContactItem() {
+export function ContactItem({ type, title }: { type: string; title: string }) {
   return (
     <ItemStyle>
       <motion.div
@@ -325,7 +291,7 @@ export function ContactItem() {
       >
         <div className="head">
           <label>
-            {"DISCORD".split("").map((e) => (
+            {type.split("").map((e) => (
               <span>{e}</span>
             ))}
           </label>
@@ -333,13 +299,13 @@ export function ContactItem() {
             <img src={discordIcon} alt="" />
           </div>
         </div>
-        <h3>TESTE#1234</h3>
+        <h3>{title}</h3>
       </motion.div>
     </ItemStyle>
   );
 }
 
-function Interested() {
+export function Interested() {
   const [drag, setDrag] = useState(false);
 
   return (

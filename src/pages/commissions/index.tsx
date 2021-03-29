@@ -2,42 +2,12 @@ import { motion } from "framer-motion";
 import React from "react";
 import ImageChanger from "../imageChanger";
 import { CommissionsContainer } from "./styles";
-//@ts-ignore
-import Main from "../../assets/Main.webm";
-//@ts-ignore
-import Mad from "../../assets/Mad.webm";
-//@ts-ignore
-import Nervous from "../../assets/Nervous.webm";
-//@ts-ignore
-import Shake from "../../assets/Shake_1.webm";
+import content from "../../data";
 
-export default function Commissions() {
-  const list = [
-    {
-      porc: 10,
-      items: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-      ],
-    },
-    {
-      porc: 20,
-      items: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-      ],
-    },
-    {
-      porc: 30,
-      items: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-      ],
-    },
-  ];
+export default function Commissions({ idioma }: { idioma: "en" | "pt" }) {
+  console.log(JSON.stringify(content));
+  const data = content[idioma];
+  const list = data.com.list;
 
   return (
     <CommissionsContainer>
@@ -75,26 +45,7 @@ export default function Commissions() {
             // }}
             className="background2"
           />
-          <ImageChanger
-            images={[
-              {
-                type: "video",
-                url: Main,
-              },
-              {
-                type: "video",
-                url: Mad,
-              },
-              {
-                type: "video",
-                url: Nervous,
-              },
-              {
-                type: "video",
-                url: Shake,
-              },
-            ]}
-          />
+          <ImageChanger images={data.com.header.example} />
           {/* <motion.img
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -138,12 +89,12 @@ export default function Commissions() {
       </header>
       <div className="spacer-lg"></div>
       <div className="info">
-        <h2 className="price">100</h2>
+        <h2 className="price">Live2D</h2>
         <div className="item-container">
-          {list.map((listItem) => (
+          {list.map((listItem: any) => (
             <div className="item">
               <ul>
-                {listItem.items.map((item) => (
+                {listItem.items.map((item: any) => (
                   <li>{item}</li>
                 ))}
               </ul>
@@ -156,7 +107,7 @@ export default function Commissions() {
                   scale: 1.2,
                 }}
               >
-                <h4>{listItem.porc}%</h4>
+                <h4>{listItem.porc}</h4>
               </motion.div>
             </div>
           ))}
@@ -164,9 +115,17 @@ export default function Commissions() {
       </div>
       <div className="spacer-lg"></div>
       <div className="actions">
-        <div className="action">
+        <motion.div
+          animate={{
+            background: "#3a3c64",
+          }}
+          whileHover={{
+            background: "#23243b",
+          }}
+          className="action"
+        >
           <b>Interested?</b> click here and enter in contact
-        </div>
+        </motion.div>
         <div className="separator"></div>
       </div>
     </CommissionsContainer>

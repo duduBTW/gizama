@@ -106,11 +106,11 @@ export default function ContactPage() {
         <div className="contact-soc">
           {" "}
           <div className="left">
-            <ContactItem />
+            <ContactItem type="DISCORD" title="teste" />
           </div>
           <div className="spacer"></div>
           <div className="spc">
-            <ContactItem />
+            <ContactItem type="TWITTER" title="teste" />
           </div>
         </div>
       </div>

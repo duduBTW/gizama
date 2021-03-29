@@ -5,11 +5,11 @@ import { pdfjs } from "react-pdf";
 
 import { Document, Page } from "react-pdf";
 import { SizeMe } from "react-sizeme";
-//@ts-ignore
-import file from "../../assets/contract.pdf";
 import { ContractContainer } from "./styles";
+import content, { ItemProp } from "../../data";
 
-export default function Contract() {
+export default function Contract({ idioma }: { idioma: "en" | "pt" }) {
+  const data = content[idioma];
   const { scrollYProgress } = useViewportScroll();
   const scale = useTransform(scrollYProgress, (value) => value * 100);
 
@@ -74,7 +74,12 @@ export default function Contract() {
               delay: 0.4,
             }}
           >
-            <Document className="border" file={file}>
+            <Document
+              className="border"
+              file={{
+                url: data.contract,
+              }}
+            >
               <Page width={Math.min(size.width, 800)} pageNumber={1} />
             </Document>
           </motion.div>

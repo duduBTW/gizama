@@ -45,7 +45,15 @@ const slashMotion: Variants = {
   },
 };
 
-export default function Nav() {
+export default function Nav({
+  setIdioma,
+  idioma,
+}: {
+  setIdioma: React.Dispatch<
+    React.SetStateAction<"en" | "pt" | null | undefined>
+  >;
+  idioma: "en" | "pt";
+}) {
   return (
     <NavContainer>
       <Link
@@ -56,6 +64,20 @@ export default function Nav() {
         gizama
       </Link>
       <div className="item">
+        <motion.div
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
+          variants={variants}
+          style={{ height: "100%", position: "relative" }}
+        >
+          <div onClick={() => setIdioma(null)} className="link">
+            <motion.div>
+              {idioma === "en" ? "Change lenguage" : "Mudar idioma"}
+            </motion.div>
+            <motion.div variants={slashMotion} className="hoverEffect" />
+          </div>
+        </motion.div>
         {links.map((link) => (
           <motion.div
             initial="rest"
