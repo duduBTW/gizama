@@ -7,8 +7,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { Button, HomeContainer, ItemStyle } from "./styles";
 import discordIcon from "../../assets/discordIcon.svg";
+import twitterIcon from "../../assets/twitterIcon.svg";
 import { useInView } from "react-intersection-observer";
 import content, { ItemProp } from "../../data";
+import { useHistory } from "react-router";
 
 function HomePage({ idioma }: { idioma: "en" | "pt" }) {
   const data = content[idioma];
@@ -256,17 +258,25 @@ function Contact({ data }: { data: ItemProp }) {
   return (
     <div className="contact">
       <div className="left">
-        <ContactItem type="DISCORD" title={data.discord} />
+        <ContactItem icon={discordIcon} type="DISCORD" title={data.discord} />
       </div>
       <div className="spacer"></div>
       <div className="rigth">
-        <ContactItem type="TWITTER" title={data.twitter} />
+        <ContactItem icon={twitterIcon} type="TWITTER" title={data.twitter} />
       </div>
     </div>
   );
 }
 
-export function ContactItem({ type, title }: { type: string; title: string }) {
+export function ContactItem({
+  type,
+  title,
+  icon,
+}: {
+  type: string;
+  title: string;
+  icon: string;
+}) {
   return (
     <ItemStyle>
       <motion.div
@@ -291,7 +301,7 @@ export function ContactItem({ type, title }: { type: string; title: string }) {
             ))}
           </label>
           <div className="icon">
-            <img src={discordIcon} alt="" />
+            <img src={icon} alt="" />
           </div>
         </div>
         <h3>{title}</h3>
@@ -301,6 +311,7 @@ export function ContactItem({ type, title }: { type: string; title: string }) {
 }
 
 export function Interested() {
+  const history = useHistory();
   const [drag, setDrag] = useState(false);
 
   return (
@@ -329,6 +340,7 @@ export function Interested() {
 
       <div className="rigth">
         <Button
+          onClick={() => history.push("/contact")}
           animate={{
             background: "#3a3c64",
           }}

@@ -3,9 +3,10 @@ import React from "react";
 import ImageChanger from "../imageChanger";
 import { CommissionsContainer } from "./styles";
 import content from "../../data";
+import { useHistory } from "react-router";
 
 export default function Commissions({ idioma }: { idioma: "en" | "pt" }) {
-  console.log(JSON.stringify(content));
+  const history = useHistory();
   const data = content[idioma];
   const list = data.com.list;
 
@@ -113,6 +114,7 @@ export default function Commissions({ idioma }: { idioma: "en" | "pt" }) {
       <div className="spacer-lg"></div>
       <div className="actions">
         <motion.div
+          onClick={() => history.push("/contact")}
           animate={{
             background: "#3a3c64",
           }}

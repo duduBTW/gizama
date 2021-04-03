@@ -4,6 +4,8 @@ import { ContactItem } from "../home";
 import { ButtonContact, ContactContainer } from "./style";
 import { useForm } from "@formcarry/react";
 import content from "../../data";
+import discordIcon from "../../assets/discordIcon.svg";
+import twitterIcon from "../../assets/twitterIcon.svg";
 
 export default function ContactPage({ idioma }: { idioma: "en" | "pt" }) {
   const { title, dec } = content[idioma].cotact;
@@ -142,11 +144,11 @@ export default function ContactPage({ idioma }: { idioma: "en" | "pt" }) {
         <div className="contact-soc">
           {" "}
           <div className="left">
-            <ContactItem type="DISCORD" title={discord} />
+            <ContactItem icon={discordIcon} type="DISCORD" title={discord} />
           </div>
           <div className="spacer"></div>
           <div className="spc">
-            <ContactItem type="TWITTER" title={twitter} />
+            <ContactItem icon={twitterIcon} type="TWITTER" title={twitter} />
           </div>
         </div>
       </div>
