@@ -5,7 +5,13 @@ import { ModaolContainer } from "./ModalStyles";
 
 import CloseIcon from "../../assets/CloseIcon.svg";
 
-function Modal({ closeModal }: { closeModal: () => void }) {
+function Modal({
+  closeModal,
+  selected,
+}: {
+  closeModal: () => void;
+  selected: any;
+}) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -85,75 +91,121 @@ function Modal({ closeModal }: { closeModal: () => void }) {
           <div className="end"></div>
         </div>
 
-        <div className="imag">
-          <ImageChanger
-            onImageChange={(index: number) => setImageIndex(index)}
-            images={[
-              {
-                type: "video",
-                url:
-                  "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Main.webm?alt=media&token=54448b68-dfda-4855-b1f3-34e8f287a979",
-              },
-              {
-                type: "video",
-                url:
-                  "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Mad.webm?alt=media&token=ee23b0f7-fa70-49e9-946e-f651d0954aba",
-              },
-              {
-                type: "video",
-                url:
-                  "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Main.webm?alt=media&token=54448b68-dfda-4855-b1f3-34e8f287a979",
-              },
-            ]}
+        {selected.type === "vTuber" ? (
+          <>
+            <div className="imag">
+              <ImageChanger
+                onImageChange={(index: number) => setImageIndex(index)}
+                images={selected.items.map((item: any) => item.main)}
+              />
+            </div>
+            <div className="imageFull">
+              <ImageFull
+                images={selected.items.map((item: any) => item.full)}
+                imageIndex={imageIndex}
+              />
+            </div>{" "}
+          </>
+        ) : selected.type === "image" ? (
+          <motion.div
+            initial={{
+              y: -200,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            className="typeImg"
+            style={{ backgroundImage: `url("${selected.url}")` }}
           />
-        </div>
-        <div className="imageFull">
-          <ImageFull imageIndex={imageIndex} />
-        </div>
+        ) : (
+          <motion.video
+            initial={{
+              y: -200,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            className="typeVideo"
+            autoPlay
+            loop
+            muted
+            data-reactid=".0.1.0.0"
+          >
+            <source
+              type="video/webm"
+              data-reactid=".0.1.0.0.0"
+              src={selected.url}
+            />
+          </motion.video>
+        )}
       </div>
     </ModaolContainer>
   );
 }
 
-function ImageFull({ imageIndex }: any) {
-  const imagesFull2 = [
-    "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MainFull.webm?alt=media&token=9c5f1e3c-8c77-467b-afd0-bafbf2a3ca37",
-    "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MadFull.webm?alt=media&token=c61fc74a-9dd2-4918-8396-c8b52d42e0e1",
-    "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MainFull.webm?alt=media&token=9c5f1e3c-8c77-467b-afd0-bafbf2a3ca37",
-  ];
+function ImageFull({ imageIndex, images }: any) {
   return (
     <AnimatePresence>
-      <motion.video
-        initial={{
-          y: -200,
-          opacity: 0,
-        }}
-        exit={{
-          x: 200,
-          y: 20,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        key={imageIndex}
-        style={{
-          position: "absolute",
-          height: "100%",
-          zIndex: 5,
-        }}
-        autoPlay
-        loop
-        muted
-        data-reactid=".0.1.0.0"
-      >
-        <source
-          type="video/webm"
-          data-reactid=".0.1.0.0.0"
-          src={imagesFull2[imageIndex]}
+      {images[imageIndex].type === "image" ? (
+        <motion.img
+          initial={{
+            y: -200,
+            opacity: 0,
+          }}
+          exit={{
+            x: 200,
+            y: 20,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          key={imageIndex}
+          style={{
+            position: "absolute",
+            height: "100%",
+            zIndex: 5,
+          }}
+          src={images[imageIndex].url}
         />
-      </motion.video>
+      ) : (
+        <motion.video
+          initial={{
+            y: -200,
+            opacity: 0,
+          }}
+          exit={{
+            x: 200,
+            y: 20,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          key={imageIndex}
+          style={{
+            position: "absolute",
+            height: "100%",
+            zIndex: 5,
+          }}
+          autoPlay
+          loop
+          muted
+          data-reactid=".0.1.0.0"
+        >
+          <source
+            type="video/webm"
+            data-reactid=".0.1.0.0.0"
+            src={images[imageIndex].url}
+          />
+        </motion.video>
+      )}
     </AnimatePresence>
   );
 }

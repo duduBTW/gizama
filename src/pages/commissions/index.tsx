@@ -65,7 +65,7 @@ export default function Commissions({ idioma }: { idioma: "en" | "pt" }) {
                 }}
                 transition={{ type: "spring", mass: 0.3 }}
               >
-                COMMISIONS
+                {data.com.header.title}
               </motion.h1>
             </div>
             <div className="pContainer">
@@ -78,10 +78,7 @@ export default function Commissions({ idioma }: { idioma: "en" | "pt" }) {
                 }}
                 transition={{ type: "spring", mass: 0.4, delay: 0.05 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniamadipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolor
+                {data.com.header.desc}
               </motion.p>
             </div>
           </div>

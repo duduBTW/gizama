@@ -6,7 +6,7 @@ import {
   Variants,
 } from "framer-motion";
 import React from "react";
-
+import content from "../../data";
 import { PortfolioContainer } from ".";
 import Modal from "./Modal";
 
@@ -46,32 +46,32 @@ const slashMotion: Variants = {
   },
 };
 
-export default function Portfolio() {
-  const items = ["a", "b", "c", "d", "e"];
-  const [isVisible, setVisible] = React.useState(false);
+export default function Portfolio({ idioma }: { idioma: "en" | "pt" }) {
+  const items = content[idioma].port;
+  const [isVisible, setVisible] = React.useState<any>(null);
 
-  const toggle = () => {
-    setVisible(true);
+  const toggle = (item: any) => {
+    setVisible(item);
   };
 
   const closeModal = () => {
-    setVisible(false);
+    setVisible(null);
   };
 
   return (
     <>
       <AnimatePresence>
-        {isVisible && <Modal closeModal={closeModal} />}
+        {isVisible && <Modal selected={isVisible} closeModal={closeModal} />}
       </AnimatePresence>
       <PortfolioContainer pointerEvents={isVisible ? "none" : "auto"}>
         <Background />
         <Header />
         <Dividers />
         <div className="container-content">
-          {items.map((_, index) => (
+          {items.map((item: any, index: number) => (
             <motion.div
               key={index}
-              onClick={toggle}
+              onClick={() => toggle(item)}
               initial="rest"
               whileHover="hover"
               animate="rest"
@@ -82,7 +82,7 @@ export default function Portfolio() {
                 initial="from"
                 whileHover="hover"
                 animate="to"
-                src="https://i.ytimg.com/vi/GsO9YDaCPD0/maxresdefault.jpg"
+                src={item.miniature}
               />
               <motion.div variants={slashMotion} className="hover">
                 Click to open

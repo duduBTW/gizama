@@ -26,6 +26,20 @@ function App() {
   );
 
   useEffect(() => {
+    if (!idioma) {
+      var language =
+        //@ts-ignore
+        window.navigator?.userLanguage || window.navigator.language;
+
+      if (language && language.includes("pt")) {
+        setIdioma("pt");
+      } else {
+        setIdioma("en");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (idioma) {
       localStorage.setItem("ln", idioma);
     }
@@ -44,13 +58,21 @@ function App() {
               exact
               render={() => <Contract idioma={idioma} />}
             />
-            <Route path="/portfolio" exact render={() => <Portfolio />} />
+            <Route
+              path="/portfolio"
+              exact
+              render={() => <Portfolio idioma={idioma} />}
+            />
             <Route
               path="/commissions"
               exact
               render={() => <Commissions idioma={idioma} />}
             />
-            <Route path="/contact" exact render={() => <ContactPage />} />
+            <Route
+              path="/contact"
+              exact
+              render={() => <ContactPage idioma={idioma} />}
+            />
             <Route path="/" exact render={() => <HomePage idioma={idioma} />} />
           </Switch>
         </BrowserRouter>

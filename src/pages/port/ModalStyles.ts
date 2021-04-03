@@ -16,7 +16,6 @@ export const ModaolContainer = styled.div`
 
   .modal {
     width: 80vw;
-
     height: 80vh;
 
     @media only screen and (max-width: 1566px) {
@@ -30,6 +29,34 @@ export const ModaolContainer = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
+    .typeImg {
+      position: absolute;
+      bottom: 0%;
+      top: 0%;
+      left: 10%;
+      right: 10%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      /* width: 100%; */
+    }
+
+    .typeVideo {
+      position: absolute;
+      bottom: 0%;
+      /* top: 0%; */
+      left: 0%;
+      right: 0%;
+      max-width: 100%;
+      max-height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+
+      /* background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom; */
+      /* width: 100%; */
+    }
 
     .imag {
       position: absolute;

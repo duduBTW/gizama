@@ -11,7 +11,6 @@ import { useInView } from "react-intersection-observer";
 import content, { ItemProp } from "../../data";
 
 function HomePage({ idioma }: { idioma: "en" | "pt" }) {
-  console.log(JSON.stringify(content));
   const data = content[idioma];
 
   return (
@@ -120,14 +119,10 @@ function Header({ data }: { data: ItemProp }) {
             scale: [1, 1.05, 1.1, 1.15, 1],
             rotate: [0, 2.5, -2.5, 2.5, 0],
             // x: 0,
-            background: "#3a3c64",
             transition: {
               type: "spring",
               delay: 0.25,
             },
-          }}
-          whileHover={{
-            background: "#23243b",
           }}
           className="button"
         >
@@ -291,8 +286,8 @@ export function ContactItem({ type, title }: { type: string; title: string }) {
       >
         <div className="head">
           <label>
-            {type.split("").map((e) => (
-              <span>{e}</span>
+            {type.split("").map((e, index) => (
+              <span key={index}>{e}</span>
             ))}
           </label>
           <div className="icon">

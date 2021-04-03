@@ -10,7 +10,7 @@ export interface ItemProp {
   home: Home;
   cotact: Cotact;
   com: Com;
-  port: Port[];
+  port: any;
   contract: string;
 }
 
@@ -50,6 +50,8 @@ interface Cotact {
   email: string;
   title: string;
   dec: string;
+  twitter: string;
+  discord: string;
 }
 
 interface Home {
@@ -68,7 +70,9 @@ interface Header {
   desc: string;
 }
 
-const data: RootObject = dataJson as RootObject;
+const data: RootObject = JSON.parse(
+  process.env.REACT_APP_DATA ?? ""
+) as RootObject;
 
 // const data: RootObject = {
 //   en: {
@@ -89,8 +93,10 @@ const data: RootObject = dataJson as RootObject;
 //     },
 //     cotact: {
 //       email: "",
-//       title: "",
-//       dec: "",
+//       twitter: "aa",
+//       discord: "bb",
+//       title: "teste",
+//       dec: "ababa",
 //     },
 //     com: {
 //       header: {
@@ -180,21 +186,86 @@ const data: RootObject = dataJson as RootObject;
 //     },
 //     port: [
 //       {
-//         type: "Live2D",
-//         content: [
-//           // {
-//           //   type: "vtuber",
-//           //   url: "",
-//           // },
+//         miniature:
+//           "https://i.pinimg.com/originals/50/77/04/50770411adf0bd85919b46a54b6be20d.jpg",
+//         type: "vTuber",
+//         items: [
 //           {
-//             type: "video",
-//             url: "",
+//             main: {
+//               type: "video",
+//               url:
+//                 "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Main.webm?alt=media&token=54448b68-dfda-4855-b1f3-34e8f287a979",
+//             },
+//             full: {
+//               type: "video",
+//               url:
+//                 "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MainFull.webm?alt=media&token=9c5f1e3c-8c77-467b-afd0-bafbf2a3ca37",
+//             },
 //           },
 //           {
-//             type: "image",
-//             url: "",
+//             main: {
+//               type: "video",
+//               url:
+//                 "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Mad.webm?alt=media&token=ee23b0f7-fa70-49e9-946e-f651d0954aba",
+//             },
+//             full: {
+//               type: "video",
+//               url:
+//                 "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MadFull.webm?alt=media&token=c61fc74a-9dd2-4918-8396-c8b52d42e0e1",
+//             },
+//           },
+//           {
+//             main: {
+//               type: "image",
+//               url:
+//                 "https://i.pinimg.com/originals/50/77/04/50770411adf0bd85919b46a54b6be20d.jpg",
+//             },
+//             full: {
+//               type: "image",
+//               url:
+//                 "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//             },
+//           },
+//           {
+//             main: {
+//               type: "video",
+//               url:
+//                 "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MadFull.webm?alt=media&token=c61fc74a-9dd2-4918-8396-c8b52d42e0e1",
+//             },
+//             full: {
+//               type: "image",
+//               url:
+//                 "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//             },
 //           },
 //         ],
+//       },
+//       {
+//         type: "image",
+//         miniature:
+//           "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//         url: "https://i.redd.it/zbfgjlff775y.jpg",
+//       },
+//       {
+//         type: "image",
+//         miniature:
+//           "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//         url:
+//           "https://c4.wallpaperflare.com/wallpaper/915/201/275/anime-new-game-aoba-suzukaze-hifumi-takimoto-wallpaper-preview.jpg",
+//       },
+//       {
+//         type: "video",
+//         miniature:
+//           "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//         url:
+//           "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/Main.webm?alt=media&token=54448b68-dfda-4855-b1f3-34e8f287a979",
+//       },
+//       {
+//         type: "video",
+//         miniature:
+//           "https://i.pinimg.com/originals/3d/15/3f/3d153f8b7b97549dca711902b50eda86.jpg",
+//         url:
+//           "https://firebasestorage.googleapis.com/v0/b/hololive-6a02e.appspot.com/o/MadFull.webm?alt=media&token=c61fc74a-9dd2-4918-8396-c8b52d42e0e1",
 //       },
 //     ],
 //     contract:
@@ -219,6 +290,8 @@ const data: RootObject = dataJson as RootObject;
 //     cotact: {
 //       email: "",
 //       title: "",
+//       twitter: "",
+//       discord: "",
 //       dec: "",
 //     },
 //     com: {

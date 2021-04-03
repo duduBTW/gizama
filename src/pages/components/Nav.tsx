@@ -80,13 +80,14 @@ export default function Nav({
         </motion.div>
         {links.map((link) => (
           <motion.div
+            key={link.url}
             initial="rest"
             whileHover="hover"
             animate="rest"
             variants={variants}
             style={{ height: "100%", position: "relative" }}
           >
-            <Link to={link.url} key={link.url} className="link">
+            <Link to={link.url} className="link">
               <motion.div>{link.label}</motion.div>
               <motion.div variants={slashMotion} className="hoverEffect" />
             </Link>

@@ -1,9 +1,17 @@
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
 import { ContactItem } from "../home";
 import { ButtonContact, ContactContainer } from "./style";
+import { useForm } from "@formcarry/react";
+import content from "../../data";
 
-export default function ContactPage() {
+export default function ContactPage({ idioma }: { idioma: "en" | "pt" }) {
+  const { title, dec } = content[idioma].cotact;
+  const { twitter, discord } = content[idioma];
+  const { state, submit } = useForm({
+    id: "azwU9knvWP",
+  });
+
   return (
     <ContactContainer>
       <div className="contact">
@@ -16,7 +24,7 @@ export default function ContactPage() {
               x: 0,
             }}
           >
-            Contact
+            {title}
           </motion.h1>
           <motion.p
             initial={{
@@ -29,13 +37,31 @@ export default function ContactPage() {
               delay: 0.1,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore
+            {dec}
           </motion.p>
         </header>
         <div className="spacer"></div>
         <div className="rig">
+          {state.submitted && (
+            <div
+              style={{
+                border: "1px solid green",
+                color: "green",
+                borderRadius: 10,
+                padding: 20,
+                marginBottom: "30px",
+              }}
+            >
+              <h3 style={{ padding: 0, margin: 0 }}>
+                {idioma === "pt"
+                  ? "Mensagem enviada com sucesso!"
+                  : "message sent successfully!"}
+              </h3>
+            </div>
+          )}
+
           <motion.form
+            onSubmit={submit}
             initial={{
               y: 20,
               opacity: 0,
@@ -53,7 +79,7 @@ export default function ContactPage() {
           >
             <div className="input">
               <label htmlFor="name">Name</label>
-              <input type="name" />
+              <input type="name" name="Nome" />
             </div>
 
             <div className="soc">
@@ -67,7 +93,7 @@ export default function ContactPage() {
               </div>
               <div className="input">
                 <label htmlFor="email">Email</label>
-                <input type="email" />
+                <input type="email" name="email" />
               </div>
             </div>
             <div className="input">
@@ -82,35 +108,45 @@ export default function ContactPage() {
                 placeholder="Type your message..."
               ></textarea>
             </div>
-
-            <ButtonContact
-              animate={{
-                background: "#3a3c64",
-              }}
-              whileHover={{
-                background: "#23243b",
-              }}
-              whileTap={{ scale: 0.9 }}
-              type="submit"
-            >
-              Send Message
-            </ButtonContact>
+            {state.submitting ? (
+              <h3 style={{ width: "110%" }}>
+                {" "}
+                {idioma === "en" ? "Sending message" : "Enviando mensagem"}...
+              </h3>
+            ) : (
+              <ButtonContact
+                animate={{
+                  background: "#3a3c64",
+                }}
+                whileHover={{
+                  background: "#23243b",
+                }}
+                whileTap={{ scale: 0.9 }}
+                type="submit"
+              >
+                {idioma === "en" ? "Send Message" : "Enviar Mensagem"}
+              </ButtonContact>
+            )}
           </motion.form>
         </div>
       </div>
       <div className="spcaer-lg"></div>
       <div className="contact-soc-container">
-        <h2>You can also enter in contact on</h2>
+        <h2>
+          {idioma === "en"
+            ? "You can also enter in contact on"
+            : "Você também pode entrar em contato pelo"}
+        </h2>
         <br />
         <br />
         <div className="contact-soc">
           {" "}
           <div className="left">
-            <ContactItem type="DISCORD" title="teste" />
+            <ContactItem type="DISCORD" title={discord} />
           </div>
           <div className="spacer"></div>
           <div className="spc">
-            <ContactItem type="TWITTER" title="teste" />
+            <ContactItem type="TWITTER" title={twitter} />
           </div>
         </div>
       </div>
