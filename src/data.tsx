@@ -70,9 +70,7 @@ interface Header {
   desc: string;
 }
 
-const data: RootObject = JSON.parse(
-  process.env.REACT_APP_DATA ?? ""
-) as RootObject;
+const data: RootObject = dataJson as RootObject;
 
 // const data: RootObject = {
 //   en: {
