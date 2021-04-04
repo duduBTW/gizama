@@ -6,7 +6,9 @@ export interface RootObject {
 
 export interface ItemProp {
   discord: string;
+  discordUrl: string;
   twitter: string;
+  twitterUrl: string;
   home: Home;
   cotact: Cotact;
   com: Com;
@@ -57,6 +59,7 @@ interface Cotact {
 interface Home {
   header: Header;
   info: Info;
+  banner: Banner;
 }
 
 interface Info {
@@ -65,11 +68,24 @@ interface Info {
   img: string;
 }
 
+interface Banner {
+  img1: string;
+  img2: string;
+  img3: string;
+  img4: string;
+  img5: string;
+  img6: string;
+  img7: string;
+  img8: string;
+}
+
 interface Header {
   title: string;
   desc: string;
+  url: string;
 }
 
+//@ts-ignore
 const data: RootObject = dataJson as RootObject;
 
 // const data: RootObject = {

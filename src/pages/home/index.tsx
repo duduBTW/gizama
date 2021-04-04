@@ -31,40 +31,25 @@ function HomePage({ idioma }: { idioma: "en" | "pt" }) {
           <motion.img
             initial={{ marginTop: 0 }}
             animate={{ marginTop: 120 }}
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
+            src={data.home?.banner?.img1}
             alt=""
           />
 
-          <img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
-          <img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
+          <img src={data.home?.banner?.img2} alt="" />
+          <img src={data.home?.banner?.img3} alt="" />
           <motion.img
             initial={{ marginBottom: 0 }}
             animate={{ marginBottom: 120 }}
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
+            src={data.home?.banner?.img4}
             alt=""
           />
-          <img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
-          <img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
-          <img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
+          <img src={data.home?.banner?.img5} alt="" />
+          <img src={data.home?.banner?.img6} alt="" />
+          <img src={data.home?.banner?.img7} alt="" />
           <motion.img
             initial={{ marginBottom: 0 }}
             animate={{ marginBottom: 120 }}
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
+            src={data.home?.banner?.img8}
             alt=""
           />
           {/* <img src={banner} alt="" /> */}
@@ -78,7 +63,7 @@ function HomePage({ idioma }: { idioma: "en" | "pt" }) {
 }
 
 function Header({ data }: { data: ItemProp }) {
-  const { desc, title } = data.home.header;
+  const { desc, title, url } = data.home.header;
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, 250]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
@@ -134,10 +119,7 @@ function Header({ data }: { data: ItemProp }) {
       <div className="spacer"></div>
       <div className="rigth">
         <div className="imgcontainer">
-          <motion.img
-            src="https://i1.wp.com/peachsalmanac.com/wp-content/uploads/2017/08/hifumi-new-game-social-anxiety.jpg?resize=620%2C356&ssl=1"
-            alt=""
-          />
+          <motion.img src={url} alt="" />
         </div>
       </div>
     </header>
@@ -258,11 +240,21 @@ function Contact({ data }: { data: ItemProp }) {
   return (
     <div className="contact">
       <div className="left">
-        <ContactItem icon={discordIcon} type="DISCORD" title={data.discord} />
+        <ContactItem
+          icon={discordIcon}
+          type="DISCORD"
+          title={data.discord}
+          url={data.discordUrl}
+        />
       </div>
       <div className="spacer"></div>
       <div className="rigth">
-        <ContactItem icon={twitterIcon} type="TWITTER" title={data.twitter} />
+        <ContactItem
+          icon={twitterIcon}
+          type="TWITTER"
+          title={data.twitter}
+          url={data.twitterUrl}
+        />
       </div>
     </div>
   );
@@ -272,10 +264,12 @@ export function ContactItem({
   type,
   title,
   icon,
+  url,
 }: {
   type: string;
   title: string;
   icon: string;
+  url: string;
 }) {
   return (
     <ItemStyle>
@@ -293,6 +287,7 @@ export function ContactItem({
           y: 0,
         }}
         className="content"
+        onClick={() => window.open(url, "_blank")}
       >
         <div className="head">
           <label>

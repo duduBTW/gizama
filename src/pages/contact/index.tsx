@@ -9,7 +9,7 @@ import twitterIcon from "../../assets/twitterIcon.svg";
 
 export default function ContactPage({ idioma }: { idioma: "en" | "pt" }) {
   const { title, dec } = content[idioma].cotact;
-  const { twitter, discord } = content[idioma];
+  const { twitter, discord, discordUrl, twitterUrl } = content[idioma];
   const { state, submit } = useForm({
     id: "azwU9knvWP",
   });
@@ -144,11 +144,21 @@ export default function ContactPage({ idioma }: { idioma: "en" | "pt" }) {
         <div className="contact-soc">
           {" "}
           <div className="left">
-            <ContactItem icon={discordIcon} type="DISCORD" title={discord} />
+            <ContactItem
+              icon={discordIcon}
+              type="DISCORD"
+              title={discord}
+              url={discordUrl}
+            />
           </div>
           <div className="spacer"></div>
           <div className="spc">
-            <ContactItem icon={twitterIcon} type="TWITTER" title={twitter} />
+            <ContactItem
+              url={twitterUrl}
+              icon={twitterIcon}
+              type="TWITTER"
+              title={twitter}
+            />
           </div>
         </div>
       </div>

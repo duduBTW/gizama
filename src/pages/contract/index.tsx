@@ -16,6 +16,7 @@ export default function Contract({ idioma }: { idioma: "en" | "pt" }) {
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
   }, []);
+
   return (
     <ContractContainer>
       <div className="progress">

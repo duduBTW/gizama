@@ -293,14 +293,16 @@ export const CommissionsContainer = styled.div`
   }
 
   .actions {
-    @media only screen and (max-width: 916px) {
-      display: none;
-    }
-
     height: 100px;
     display: flex;
+
     .action {
       cursor: pointer;
+      @media only screen and (max-width: 916px) {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 0px;
+      }
 
       flex: 3;
       background: #3a3c64;
